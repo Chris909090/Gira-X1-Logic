@@ -1,0 +1,18 @@
+Dieser Baustein ist Teil einer Anwendung, die Bedingungen und Zeitabläufe überwacht. Es gibt verschiedene Eingänge, die den Status der Überwachung beeinflussen:
+
+Reset: Wenn dieser Eingang gesetzt und Value kleiner als UndercuttingValue ist, werden alle Ausgänge zurückgesetzt.
+Value: Ein Wert, der überwacht wird.
+ExceedingValue: Ein Schwellenwert, der überschritten werden muss, um den Zustand ValueExceeded zu aktivieren.
+ExceedingValueHigh: Ein Schwellenwert der in einer bestimmten zeit überschritten werden muss da sonst ValueExceededButNotIncreasedHigh auslöst.
+UndercuttingValue: Ein Schwellenwert, der unterschritten werden muss, um den Zustand ValueExceededAndUndercutAgain zu aktivieren.
+TimeExceedingValue: Ein Zeitintervall, das der Wert Value über dem Schwellenwert ExceedingValue liegen muss, um den Zustand ValueExceeded zu aktivieren.
+TimeExceedingValueHigh: Ein Zeitintervall der vorgibt bis wann ExceedingValueHigh überschritten sien muss.
+TimeUndercuttingValue: Ein Zeitintervall, das der Wert Value unter dem Schwellenwert UndercuttingValue liegen muss, um den Zustand ValueExceededAndUndercutAgain zu aktivieren.
+TimeUndercuttingValueToEarly: Ein Zeitintervall, das der Wert Value unter dem Schwellenwert UndercuttingValue liegen muss, um den Zustand ValueExceededAndUndercutAgainToEarly zu aktivieren.
+Die Ausgänge, die generiert werden, sind:
+
+ValueExceeded: Ein Ausgang, der auf True gesetzt wird, wenn der Wert Value den Schwellenwert ExceedingValue überschreitet und das Zeitintervall TimeExceedingValue erreicht wurde.
+ValueExceededAndUndercutAgain: Ein Ausgang, der auf True gesetzt wird, wenn der Wert Value den Schwellenwert UndercuttingValue unterschreitet, nachdem der Zustand ValueExceeded aktiviert wurde und das Zeitintervall TimeUndercuttingValue erreicht wurde.
+ValueExceededAndUndercutAgainToEarly: Ein Ausgang, der auf True gesetzt wird, wenn der Wert Value den Schwellenwert UndercuttingValue unterschreitet, bevor das Zeitintervall TimeUndercuttingValueToEarly abgelaufen ist, nachdem der Zustand ValueExceeded aktiviert wurde.
+ValueExceededButNotIncreasedHigh: Ein Ausgang der true wird wenn ExceedingValueHigh nicht nach der Zeit TimeExceedingValueHigh überschritten wurde.
+Der Zustand des Programms wird in einer persistenten Speicherung gespeichert, um den Zustand des Programms wiederherstellen zu können.
